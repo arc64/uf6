@@ -28,6 +28,47 @@ entity in context B then becomes an explicit mapping task which may
 require user input.
 
 
+## Spider API
+
+Spiders must have an easy-to-use API which they can use to receive
+search requests from the system core and generate potential matches.
+
+
+## Web API
+
+Submitting a crawl request:
+
+```
+POST /api/1.0/crawl
+```
+
+This expects a JSON-formatted search query, and will return a simple crawl ID reference which the client can check as spider information is retrieved. This is an example request:
+
+```json
+{
+    "queries": [
+        {
+            "type": "Company",
+            "label": "Chevron Inc."
+        },
+        {
+            "type": "Person",
+            "label": "William Gates"
+        }
+    ]
+}
+```
+
+A response could look like this:
+
+```json
+{
+    "status": "pending",
+    "crawl_id": "5b5b9278-0bf7-4cb6-9e7f-289bb9a893e1",
+    "crawl_uri": "http://uf6.service.org/api/1/crawls/5b5b9278-0bf7-4cb6-9e7f-289bb9a893e1"
+}
+```
+
 ## Origins
 
 The design of this API is inspired by discussions on the
