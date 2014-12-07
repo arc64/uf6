@@ -69,6 +69,7 @@ A response could look like this:
 }
 ```
 
+
 ## Origins
 
 The design of this API is inspired by discussions on the

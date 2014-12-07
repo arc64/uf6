@@ -1,12 +1,23 @@
 # Design mock-up: what should a spider look like?
-from uf6 import Spider, properties as p, types as t
+from uf6 import Spider, Option
+from uf6 import properties as p, types as t
 
 
 class MySpider(Spider):
 
+    name = 'my_spider'
+    description = ''
+    source_label = 'My Service'
+    source_url = 'http://my-service.com'
+    api_key = Option(description='My Service API Key')
+    
     def lookup(self, search_node):
         # Get a node attribute:
         label = search_node.get(p.label)
+
+        # or:
+        if not search_node.is_a(t.Company):
+            return
 
         # Some web or database lookup:
         results = self.my_service_search(label)
